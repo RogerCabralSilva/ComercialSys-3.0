@@ -51,5 +51,13 @@ namespace ComercialSys
             frmClienteConsulta.StartPosition = FormStartPosition.CenterScreen;
             frmClienteConsulta.Show();
         }
+
+        private void novoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FrmProduto frmProduto = new FrmProduto();
+            frmProduto.MdiParent = this;
+            frmProduto.StartPosition = FormStartPosition.CenterScreen;
+            frmProduto.Show();
+        }
     }
 }
