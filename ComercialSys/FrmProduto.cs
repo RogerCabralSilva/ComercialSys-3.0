@@ -18,10 +18,7 @@ namespace ComercialSys
             InitializeComponent();
         }
 
-        private void FrmProduto_Load(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
@@ -29,6 +26,24 @@ namespace ComercialSys
             produto.Inserir();
 
             FrmProduto_Load(sender, e);
+        }
+
+        private void FrmProduto_Load(object sender, EventArgs e)
+        {
+            var lista = Produto.ObterLista();
+            dgvProdutos.Rows.Clear();
+            int count = 0;
+            foreach (var produto in lista)
+            {
+                dgvProdutos.Rows.Add();
+                dgvProdutos.Rows[count].Cells[0].Value = produto.Id;
+                dgvProdutos.Rows[count].Cells[1].Value =  produto.CodBarras;
+                dgvProdutos.Rows[count].Cells[2].Value = produto.Descricao;
+                dgvProdutos.Rows[count].Cells[3].Value = produto.ValorUnit;
+
+
+                count++;
+            }
         }
     }
 }

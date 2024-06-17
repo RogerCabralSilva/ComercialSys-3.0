@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dgtProdutos = new DataGridView();
+            dgvProdutos = new DataGridView();
             clnId = new DataGridViewTextBoxColumn();
             clnDescricao = new DataGridViewTextBoxColumn();
             clnCodigoBarras = new DataGridViewTextBoxColumn();
@@ -53,27 +53,27 @@
             txtCodigosBarras = new TextBox();
             txtDescricao = new TextBox();
             txtDesconto = new TextBox();
+            txtCategoriaId = new TextBox();
             txtValorUnit = new TextBox();
             txtUnidadeVenda = new TextBox();
             label1 = new Label();
-            txtCategoriaId = new TextBox();
-            ((System.ComponentModel.ISupportInitialize)dgtProdutos).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvProdutos).BeginInit();
             gpProdutos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)npEstoqueMinimo).BeginInit();
             SuspendLayout();
             // 
-            // dgtProdutos
+            // dgvProdutos
             // 
-            dgtProdutos.AllowUserToAddRows = false;
-            dgtProdutos.AllowUserToDeleteRows = false;
-            dgtProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgtProdutos.Columns.AddRange(new DataGridViewColumn[] { clnId, clnDescricao, clnCodigoBarras, clnValorUnit, clnUnidadeVenda, clnEstoqueMinimo, clnCategoria, clnDesconto });
-            dgtProdutos.Location = new Point(50, 394);
-            dgtProdutos.Name = "dgtProdutos";
-            dgtProdutos.ReadOnly = true;
-            dgtProdutos.RowHeadersVisible = false;
-            dgtProdutos.Size = new Size(748, 150);
-            dgtProdutos.TabIndex = 6;
+            dgvProdutos.AllowUserToAddRows = false;
+            dgvProdutos.AllowUserToDeleteRows = false;
+            dgvProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvProdutos.Columns.AddRange(new DataGridViewColumn[] { clnId, clnDescricao, clnCodigoBarras, clnValorUnit, clnUnidadeVenda, clnEstoqueMinimo, clnCategoria, clnDesconto });
+            dgvProdutos.Location = new Point(50, 394);
+            dgvProdutos.Name = "dgvProdutos";
+            dgvProdutos.ReadOnly = true;
+            dgvProdutos.RowHeadersVisible = false;
+            dgvProdutos.Size = new Size(748, 150);
+            dgvProdutos.TabIndex = 6;
             // 
             // clnId
             // 
@@ -283,6 +283,13 @@
             txtDesconto.Size = new Size(117, 23);
             txtDesconto.TabIndex = 1;
             // 
+            // txtCategoriaId
+            // 
+            txtCategoriaId.Location = new Point(356, 158);
+            txtCategoriaId.Name = "txtCategoriaId";
+            txtCategoriaId.Size = new Size(44, 23);
+            txtCategoriaId.TabIndex = 1;
+            // 
             // txtValorUnit
             // 
             txtValorUnit.Location = new Point(296, 99);
@@ -308,25 +315,18 @@
             label1.TabIndex = 4;
             label1.Text = "Produtos";
             // 
-            // txtCategoriaId
-            // 
-            txtCategoriaId.Location = new Point(356, 158);
-            txtCategoriaId.Name = "txtCategoriaId";
-            txtCategoriaId.Size = new Size(44, 23);
-            txtCategoriaId.TabIndex = 1;
-            // 
             // FrmProduto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(886, 581);
-            Controls.Add(dgtProdutos);
+            Controls.Add(dgvProdutos);
             Controls.Add(gpProdutos);
             Controls.Add(label1);
             Name = "FrmProduto";
             Text = "FrmProduto";
             Load += FrmProduto_Load;
-            ((System.ComponentModel.ISupportInitialize)dgtProdutos).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvProdutos).EndInit();
             gpProdutos.ResumeLayout(false);
             gpProdutos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)npEstoqueMinimo).EndInit();
@@ -336,7 +336,7 @@
 
         #endregion
 
-        private DataGridView dgtProdutos;
+        private DataGridView dgvProdutos;
         private DataGridViewTextBoxColumn clnId;
         private DataGridViewTextBoxColumn clnDescricao;
         private DataGridViewTextBoxColumn clnCodigoBarras;
