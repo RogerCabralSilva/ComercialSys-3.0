@@ -22,7 +22,7 @@ namespace ComercialSys
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            Produto produto = new Produto(txtCodigosBarras.Text, txtDescricao.Text, decimal.Parse(txtValorUnit.Text), txtUnidadeVenda.Text,Categoria.ObterPorId(int.Parse(txtCategoriaId.Text)), npEstoqueMinimo.Value, decimal.Parse(txtDesconto.Text));
+            Produto produto = new Produto(txtCodigosBarras.Text, txtDescricao.Text, decimal.Parse(txtValorUnit.Text), txtUnidadeVenda.Text,Categoria.ObterPorId(Convert.ToInt32(cmbCategoria.SelectedValue)), npEstoqueMinimo.Value, decimal.Parse(txtDesconto.Text));
             produto.Inserir();
 
             FrmProduto_Load(sender, e);
@@ -30,6 +30,11 @@ namespace ComercialSys
 
         private void FrmProduto_Load(object sender, EventArgs e)
         {
+            var categorias = Categoria.ObterLista();
+            cmbCategoria.DataSource = categorias;
+            cmbCategoria.ValueMember = "id";
+            cmbCategoria.DisplayMember = "nome";
+
             var lista = Produto.ObterLista();
             dgvProdutos.Rows.Clear();
             int count = 0;
