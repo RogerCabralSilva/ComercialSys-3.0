@@ -120,6 +120,7 @@ namespace ComClassSys
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "sp_produto_update"; // nome da procedure de alteração de Categoria
+            cmd.Parameters.AddWithValue("spid", Id);
             cmd.Parameters.AddWithValue("spcod_barras", CodBarras);
             cmd.Parameters.AddWithValue("spdescricao", Descricao);
             cmd.Parameters.AddWithValue("spvalor_unit", ValorUnit);

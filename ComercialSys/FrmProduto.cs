@@ -25,6 +25,8 @@ namespace ComercialSys
             Produto produto = new Produto(txtCodigosBarras.Text, txtDescricao.Text, decimal.Parse(txtValorUnit.Text), txtUnidadeVenda.Text, Categoria.ObterPorId(Convert.ToInt32(cmbCategoria.SelectedValue)), npEstoqueMinimo.Value, decimal.Parse(txtDesconto.Text));
             produto.Inserir();
 
+            MessageBox.Show($"O produto com o id{produto.Id} foi criado com sucesso");
+
             FrmProduto_Load(sender, e);
         }
 
@@ -81,14 +83,20 @@ namespace ComercialSys
                     txtDesconto.Text = Convert.ToString(produto.ClasseDesconto);
                     txtUnidadeVenda.Text = produto.UnidadeVenda;
                     npEstoqueMinimo.Value = produto.EstoqueMinimo;
+                    cmbCategoria.SelectedIndex = cmbCategoria.FindString(produto.Categoria.Nome);
                     btnEditar.Enabled = true;
                 }
             }
         }
 
-        private void txtId_TextChanged(object sender, EventArgs e)
-        {
 
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            Produto produto = new Produto(Convert.ToInt32(txtId.Text), txtCodigosBarras.Text,txtDescricao.Text, Convert.ToDecimal(txtValorUnit.Text),
+                txtUnidadeVenda.Text,
+                Categoria.ObterPorId(Convert.ToInt32(cmbCategoria.SelectedValue)),
+               npEstoqueMinimo.Value,
+                decimal.Parse(txtDesconto.Text));
         }
     }
 }

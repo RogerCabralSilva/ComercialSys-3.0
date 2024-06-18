@@ -211,6 +211,7 @@
             btnEditar.TabIndex = 4;
             btnEditar.Text = "&Editar";
             btnEditar.UseVisualStyleBackColor = true;
+            btnEditar.Click += btnEditar_Click;
             // 
             // label7
             // 
@@ -290,7 +291,6 @@
             txtId.Name = "txtId";
             txtId.Size = new Size(70, 23);
             txtId.TabIndex = 1;
-            txtId.TextChanged += txtId_TextChanged;
             // 
             // txtCodigosBarras
             // 
