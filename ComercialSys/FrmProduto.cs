@@ -22,7 +22,7 @@ namespace ComercialSys
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            Produto produto = new Produto(txtCodigosBarras.Text, txtDescricao.Text, decimal.Parse(txtValorUnit.Text), txtUnidadeVenda.Text,int.Parse(txtCategoriaId.Text), npEstoqueMinimo.Value, decimal.Parse(txtDesconto.Text));
+            Produto produto = new Produto(txtCodigosBarras.Text, txtDescricao.Text, decimal.Parse(txtValorUnit.Text), txtUnidadeVenda.Text,Categoria.ObterPorId(int.Parse(txtCategoriaId.Text)), npEstoqueMinimo.Value, decimal.Parse(txtDesconto.Text));
             produto.Inserir();
 
             FrmProduto_Load(sender, e);
@@ -37,9 +37,14 @@ namespace ComercialSys
             {
                 dgvProdutos.Rows.Add();
                 dgvProdutos.Rows[count].Cells[0].Value = produto.Id;
-                dgvProdutos.Rows[count].Cells[1].Value =  produto.CodBarras;
+                dgvProdutos.Rows[count].Cells[1].Value = produto.CodBarras;
                 dgvProdutos.Rows[count].Cells[2].Value = produto.Descricao;
                 dgvProdutos.Rows[count].Cells[3].Value = produto.ValorUnit;
+                dgvProdutos.Rows[count].Cells[4].Value = produto.UnidadeVenda;
+                dgvProdutos.Rows[count].Cells[5].Value = produto.Categoria.Nome;
+                dgvProdutos.Rows[count].Cells[6].Value = produto.EstoqueMinimo;
+                dgvProdutos.Rows[count].Cells[7].Value = produto.ClasseDesconto;
+                dgvProdutos.Rows[count].Cells[8].Value = produto.DataCad;
 
 
                 count++;

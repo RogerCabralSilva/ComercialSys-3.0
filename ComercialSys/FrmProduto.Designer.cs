@@ -29,14 +29,6 @@
         private void InitializeComponent()
         {
             dgvProdutos = new DataGridView();
-            clnId = new DataGridViewTextBoxColumn();
-            clnDescricao = new DataGridViewTextBoxColumn();
-            clnCodigoBarras = new DataGridViewTextBoxColumn();
-            clnValorUnit = new DataGridViewTextBoxColumn();
-            clnUnidadeVenda = new DataGridViewTextBoxColumn();
-            clnEstoqueMinimo = new DataGridViewTextBoxColumn();
-            clnCategoria = new DataGridViewTextBoxColumn();
-            clnDesconto = new DataGridViewTextBoxColumn();
             gpProdutos = new GroupBox();
             dtpDataCad = new DateTimePicker();
             npEstoqueMinimo = new NumericUpDown();
@@ -57,6 +49,15 @@
             txtValorUnit = new TextBox();
             txtUnidadeVenda = new TextBox();
             label1 = new Label();
+            clnId = new DataGridViewTextBoxColumn();
+            clnCodigoBarras = new DataGridViewTextBoxColumn();
+            clnDescricao = new DataGridViewTextBoxColumn();
+            clnValorUnit = new DataGridViewTextBoxColumn();
+            clnUnidadeVenda = new DataGridViewTextBoxColumn();
+            clnCategoria = new DataGridViewTextBoxColumn();
+            clnEstoqueMinimo = new DataGridViewTextBoxColumn();
+            clnDesconto = new DataGridViewTextBoxColumn();
+            clnData = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgvProdutos).BeginInit();
             gpProdutos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)npEstoqueMinimo).BeginInit();
@@ -67,67 +68,13 @@
             dgvProdutos.AllowUserToAddRows = false;
             dgvProdutos.AllowUserToDeleteRows = false;
             dgvProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProdutos.Columns.AddRange(new DataGridViewColumn[] { clnId, clnDescricao, clnCodigoBarras, clnValorUnit, clnUnidadeVenda, clnEstoqueMinimo, clnCategoria, clnDesconto });
+            dgvProdutos.Columns.AddRange(new DataGridViewColumn[] { clnId, clnCodigoBarras, clnDescricao, clnValorUnit, clnUnidadeVenda, clnCategoria, clnEstoqueMinimo, clnDesconto, clnData });
             dgvProdutos.Location = new Point(50, 394);
             dgvProdutos.Name = "dgvProdutos";
             dgvProdutos.ReadOnly = true;
             dgvProdutos.RowHeadersVisible = false;
             dgvProdutos.Size = new Size(748, 150);
             dgvProdutos.TabIndex = 6;
-            // 
-            // clnId
-            // 
-            clnId.Frozen = true;
-            clnId.HeaderText = "ID";
-            clnId.Name = "clnId";
-            clnId.ReadOnly = true;
-            // 
-            // clnDescricao
-            // 
-            clnDescricao.HeaderText = "Descrição";
-            clnDescricao.Name = "clnDescricao";
-            clnDescricao.ReadOnly = true;
-            clnDescricao.Width = 200;
-            // 
-            // clnCodigoBarras
-            // 
-            clnCodigoBarras.HeaderText = "Código de Barras";
-            clnCodigoBarras.Name = "clnCodigoBarras";
-            clnCodigoBarras.ReadOnly = true;
-            clnCodigoBarras.Width = 200;
-            // 
-            // clnValorUnit
-            // 
-            clnValorUnit.HeaderText = "Valor Unitário";
-            clnValorUnit.Name = "clnValorUnit";
-            clnValorUnit.ReadOnly = true;
-            clnValorUnit.Width = 120;
-            // 
-            // clnUnidadeVenda
-            // 
-            clnUnidadeVenda.HeaderText = "Unidade de Venda";
-            clnUnidadeVenda.Name = "clnUnidadeVenda";
-            clnUnidadeVenda.ReadOnly = true;
-            clnUnidadeVenda.Width = 130;
-            // 
-            // clnEstoqueMinimo
-            // 
-            clnEstoqueMinimo.HeaderText = "Estoque Minimo";
-            clnEstoqueMinimo.Name = "clnEstoqueMinimo";
-            clnEstoqueMinimo.ReadOnly = true;
-            clnEstoqueMinimo.Width = 130;
-            // 
-            // clnCategoria
-            // 
-            clnCategoria.HeaderText = "Categoria";
-            clnCategoria.Name = "clnCategoria";
-            clnCategoria.ReadOnly = true;
-            // 
-            // clnDesconto
-            // 
-            clnDesconto.HeaderText = "Desconto";
-            clnDesconto.Name = "clnDesconto";
-            clnDesconto.ReadOnly = true;
             // 
             // gpProdutos
             // 
@@ -315,6 +262,66 @@
             label1.TabIndex = 4;
             label1.Text = "Produtos";
             // 
+            // clnId
+            // 
+            clnId.Frozen = true;
+            clnId.HeaderText = "ID";
+            clnId.Name = "clnId";
+            clnId.ReadOnly = true;
+            // 
+            // clnCodigoBarras
+            // 
+            clnCodigoBarras.HeaderText = "Código de Barras";
+            clnCodigoBarras.Name = "clnCodigoBarras";
+            clnCodigoBarras.ReadOnly = true;
+            clnCodigoBarras.Width = 200;
+            // 
+            // clnDescricao
+            // 
+            clnDescricao.HeaderText = "Descrição";
+            clnDescricao.Name = "clnDescricao";
+            clnDescricao.ReadOnly = true;
+            clnDescricao.Width = 200;
+            // 
+            // clnValorUnit
+            // 
+            clnValorUnit.HeaderText = "Valor Unitário";
+            clnValorUnit.Name = "clnValorUnit";
+            clnValorUnit.ReadOnly = true;
+            clnValorUnit.Width = 120;
+            // 
+            // clnUnidadeVenda
+            // 
+            clnUnidadeVenda.HeaderText = "Unidade de Venda";
+            clnUnidadeVenda.Name = "clnUnidadeVenda";
+            clnUnidadeVenda.ReadOnly = true;
+            clnUnidadeVenda.Width = 130;
+            // 
+            // clnCategoria
+            // 
+            clnCategoria.HeaderText = "Categoria";
+            clnCategoria.Name = "clnCategoria";
+            clnCategoria.ReadOnly = true;
+            // 
+            // clnEstoqueMinimo
+            // 
+            clnEstoqueMinimo.HeaderText = "Estoque Minimo";
+            clnEstoqueMinimo.Name = "clnEstoqueMinimo";
+            clnEstoqueMinimo.ReadOnly = true;
+            clnEstoqueMinimo.Width = 130;
+            // 
+            // clnDesconto
+            // 
+            clnDesconto.HeaderText = "Desconto";
+            clnDesconto.Name = "clnDesconto";
+            clnDesconto.ReadOnly = true;
+            // 
+            // clnData
+            // 
+            clnData.HeaderText = "Data Cadastro";
+            clnData.Name = "clnData";
+            clnData.ReadOnly = true;
+            // 
             // FrmProduto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -337,14 +344,6 @@
         #endregion
 
         private DataGridView dgvProdutos;
-        private DataGridViewTextBoxColumn clnId;
-        private DataGridViewTextBoxColumn clnDescricao;
-        private DataGridViewTextBoxColumn clnCodigoBarras;
-        private DataGridViewTextBoxColumn clnValorUnit;
-        private DataGridViewTextBoxColumn clnUnidadeVenda;
-        private DataGridViewTextBoxColumn clnEstoqueMinimo;
-        private DataGridViewTextBoxColumn clnCategoria;
-        private DataGridViewTextBoxColumn clnDesconto;
         private GroupBox gpProdutos;
         private DateTimePicker dtpDataCad;
         private MaskedTextBox mtbDesconto;
@@ -367,5 +366,14 @@
         private TextBox txtValorUnit;
         private TextBox txtDesconto;
         private TextBox txtCategoriaId;
+        private DataGridViewTextBoxColumn clnId;
+        private DataGridViewTextBoxColumn clnCodigoBarras;
+        private DataGridViewTextBoxColumn clnDescricao;
+        private DataGridViewTextBoxColumn clnValorUnit;
+        private DataGridViewTextBoxColumn clnUnidadeVenda;
+        private DataGridViewTextBoxColumn clnCategoria;
+        private DataGridViewTextBoxColumn clnEstoqueMinimo;
+        private DataGridViewTextBoxColumn clnDesconto;
+        private DataGridViewTextBoxColumn clnData;
     }
 }
