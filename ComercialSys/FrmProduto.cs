@@ -18,11 +18,11 @@ namespace ComercialSys
             InitializeComponent();
         }
 
-        
+
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            Produto produto = new Produto(txtCodigosBarras.Text, txtDescricao.Text, decimal.Parse(txtValorUnit.Text), txtUnidadeVenda.Text,Categoria.ObterPorId(Convert.ToInt32(cmbCategoria.SelectedValue)), npEstoqueMinimo.Value, decimal.Parse(txtDesconto.Text));
+            Produto produto = new Produto(txtCodigosBarras.Text, txtDescricao.Text, decimal.Parse(txtValorUnit.Text), txtUnidadeVenda.Text, Categoria.ObterPorId(Convert.ToInt32(cmbCategoria.SelectedValue)), npEstoqueMinimo.Value, decimal.Parse(txtDesconto.Text));
             produto.Inserir();
 
             FrmProduto_Load(sender, e);
@@ -54,6 +54,41 @@ namespace ComercialSys
 
                 count++;
             }
+        }
+
+        private void btnCosultar_Click(object sender, EventArgs e)
+        {
+            if (btnCosultar.Text == "&Consultar")
+            {
+                txtCodigosBarras.Clear();
+                txtValorUnit.Clear();
+                txtUnidadeVenda.Clear();
+                txtDescricao.Clear();
+                txtDesconto.Clear();
+                txtUnidadeVenda.Clear();
+                npEstoqueMinimo.Value = 0;
+                btnCosultar.Text = "&Obter por ID";
+
+            }
+            else
+            {
+                if (txtId.Text.Length > 0)
+                {
+                    Produto produto = Produto.BuscarPorId(int.Parse(txtId.Text));
+                    txtCodigosBarras.Text = produto.CodBarras;
+                    txtValorUnit.Text = Convert.ToString(produto.ValorUnit);
+                    txtDescricao.Text = produto.Descricao;
+                    txtDesconto.Text = Convert.ToString(produto.ClasseDesconto);
+                    txtUnidadeVenda.Text = produto.UnidadeVenda;
+                    npEstoqueMinimo.Value = produto.EstoqueMinimo;
+                    btnEditar.Enabled = true;
+                }
+            }
+        }
+
+        private void txtId_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

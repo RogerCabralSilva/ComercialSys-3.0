@@ -40,6 +40,19 @@ namespace ComClassSys
             DataCad = dataCad;
         }
 
+        public Produto(int id, string codBarras, string descricao, decimal valorUnit, string unidadeVenda, Categoria categoria, decimal estoqueMinimo, decimal classeDesconto)
+        {
+            Id = id;
+            CodBarras = codBarras;
+            Descricao = descricao;
+            ValorUnit = valorUnit;
+            UnidadeVenda = unidadeVenda;
+            Categoria = categoria;
+            EstoqueMinimo = estoqueMinimo;
+            ClasseDesconto = classeDesconto;
+
+        }
+
         public Produto(string codBarras, string descricao, decimal valorUnit, string unidadeVenda, Categoria categoria, decimal estoqueMinimo, decimal classeDesconto, string imagem)
         {
             CodBarras = codBarras;
@@ -95,8 +108,8 @@ namespace ComClassSys
                     dr.GetString(4), 
                     Categoria.ObterPorId(dr.GetInt32(5)), 
                     dr.GetDecimal(6), 
-                    dr.GetDecimal(7),
-                    dr.GetDateTime(8));
+                    dr.GetDecimal(7)
+                    );
             }
             return produto;
         }
