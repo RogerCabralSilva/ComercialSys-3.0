@@ -70,6 +70,7 @@ namespace ComercialSys
                 txtUnidadeVenda.Clear();
                 npEstoqueMinimo.Value = 0;
                 btnCosultar.Text = "&Obter por ID";
+                txtId.ReadOnly = false;
 
             }
             else
@@ -92,11 +93,21 @@ namespace ComercialSys
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            Produto produto = new Produto(Convert.ToInt32(txtId.Text), txtCodigosBarras.Text,txtDescricao.Text, Convert.ToDecimal(txtValorUnit.Text),
+            Produto produto = new Produto(Convert.ToInt32(txtId.Text), txtCodigosBarras.Text,txtDescricao.Text, decimal.Parse(txtValorUnit.Text),
                 txtUnidadeVenda.Text,
                 Categoria.ObterPorId(Convert.ToInt32(cmbCategoria.SelectedValue)),
                npEstoqueMinimo.Value,
                 decimal.Parse(txtDesconto.Text));
+
+            if (produto.Editar(produto.Id))
+            {
+                FrmProduto_Load(sender, e);
+                MessageBox.Show($"O Produto {produto.Id} foi alterada com sucesso!");
+            }
+            else
+            {
+                MessageBox.Show($"Falha ao alterar Produto \"{produto.Id}\" !");
+            }
         }
     }
 }
