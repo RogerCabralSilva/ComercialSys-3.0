@@ -16,5 +16,15 @@ namespace ComercialSys
         {
             InitializeComponent();
         }
+
+        private void FrmPedido_Load(object sender, EventArgs e)
+        {
+            txtVendedor.Text = Program.Usuario.Id + " - " + Program.Usuario;
+        }
+
+        private void btnAbrirPedido_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
