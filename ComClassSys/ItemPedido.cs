@@ -12,7 +12,7 @@ namespace ComClassSys
     {
         // Propriedade
         public int Id { get; set; }
-        public Pedido Pedido { get; set; }
+        public int PedidoId { get; set; }
         public Produto Produto { get; set; }
         public double ValorUnit { get; set; }
         public double Quantidade { get; set; }
@@ -21,13 +21,13 @@ namespace ComClassSys
         // Construtores
         public ItemPedido()
         {
-            Pedido = new();
+            
         }
 
-        public ItemPedido(int id, Pedido pedido, Produto produto, double valorUnit, double quantidade, double desconto)
+        public ItemPedido(int id,int pedidoId, Produto produto, double valorUnit, double quantidade, double desconto)
         {
             Id = id;
-            Pedido = pedido;
+            PedidoId = pedidoId;
             Produto = produto;
             ValorUnit = valorUnit;
             Quantidade = quantidade;
@@ -35,9 +35,9 @@ namespace ComClassSys
 
         }
 
-        public ItemPedido(Pedido pedido, Produto produto, double valorUnit, double quantidade, double desconto)
+        public ItemPedido(int pedidoId, Produto produto, double valorUnit, double quantidade, double desconto)
         {
-            Pedido = pedido;
+            PedidoId = pedidoId;
             Produto = produto;
             ValorUnit = valorUnit;
             Quantidade = quantidade;
@@ -52,7 +52,7 @@ namespace ComClassSys
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "sp_itempedido_insert";
-            cmd.Parameters.AddWithValue("sppedido_id", Pedido.Id);
+            cmd.Parameters.AddWithValue("sppedido_id", PedidoId);
             cmd.Parameters.AddWithValue("spproduto_id", Produto.Id);
             cmd.Parameters.AddWithValue("spquantidade", Quantidade);
             cmd.Parameters.AddWithValue("spdesconto", Desconto);
@@ -66,11 +66,25 @@ namespace ComClassSys
             return itemPedido;
         }
 
-        public static List<ItemPedido> ObterListaPorPedido(int idPedido, int idProduto = 0)
+        public static List<ItemPedido> ObterListaPorPedido(int idPedido)
         {
-            List<ItemPedido> lista = new();
+            List<ItemPedido> itens = new();
 
-            return lista;
+            var cmd = Banco.Abrir();
+            cmd.CommandText = $"select * from itempedido where pedido_id = {idPedido}";
+            var dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                itens.Add(new(dr.GetInt32(0), 
+                    dr.GetInt32(1), 
+                    Produto.BuscarPorId(dr.GetInt32(2)), 
+                    dr.GetDouble(3), 
+                    dr.GetDouble(4),
+                    dr.GetDouble(5)));
+            }
+
+
+            return itens;
         }
         // alterar Item
         public bool Alterar(int id)
