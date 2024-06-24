@@ -59,6 +59,8 @@ namespace ComercialSys
 
         }
 
+        Produto produto = new();
+
         private void txtCodigoBarras_TextChanged(object sender, EventArgs e)
         {
             if (txtCodigoBarras.Text.Length > 4)
@@ -68,6 +70,7 @@ namespace ComercialSys
                 {
                     txtDescricao.Text = produto.Descricao;
                     txtValorUnit.Text = produto.ValorUnit.ToString();
+                    lblDesconto.Text = $"R$ {produto.ClasseDesconto * produto.ValorUnit}";
                 }
 
             }
@@ -75,14 +78,48 @@ namespace ComercialSys
 
         private void InserirItem_Click(object sender, EventArgs e)
         {
-            ItemPedido itemPedido = 
-                new(int.Parse(txtNumeroPedido.Text), 
-                Produto.BuscarPorId(int.Parse(txtCodigoBarras.Text)), 
-                double.Parse(txtValorUnit.Text), 
+            ItemPedido itemPedido =
+                new(int.Parse(txtNumeroPedido.Text),
+                Produto.BuscarPorId(int.Parse(txtCodigoBarras.Text)),
+                double.Parse(txtValorUnit.Text),
                 double.Parse(txtQuantidade.Text),
-                0
+                double.Parse(txtDesconto.Text)
                 );
             itemPedido.Inserir();
+
+            // Limpar o DataGrid
+            dgvItens.Rows.Clear();
+            var itens = ItemPedido.ObterListaPorPedido(int.Parse(txtNumeroPedido.Text));
+            int count = 0;
+            double subTotal = 0;
+
+            foreach (var item in itens)
+            {
+                dgvItens.Rows.Add();
+                dgvItens.Rows[count].Cells[0].Value = $"#{count + 1}";
+                dgvItens.Rows[count].Cells[1].Value = item.Produto.CodBarras;
+                dgvItens.Rows[count].Cells[2].Value = item.Produto.UnidadeVenda;
+                dgvItens.Rows[count].Cells[3].Value = item.Produto.ValorUnit;
+                dgvItens.Rows[count].Cells[4].Value = item.Quantidade;
+                dgvItens.Rows[count].Cells[5].Value = item.Produto.CodBarras;
+                dgvItens.Rows[count].Cells[6].Value = item.Desconto;
+                dgvItens.Rows[count].Cells[7].Value = item.ValorUnit * item.Quantidade - item.Desconto;
+
+                subTotal += item.ValorUnit * item.Quantidade - item.Desconto;
+
+                count++;
+            }
+
+            txtSubTotal.Text = subTotal.ToString();
+
+        }
+
+        private void txtQuantidade_TextChanged(object sender, EventArgs e)
+        {
+            if (txtQuantidade.Text.Length > 0)
+            {
+                lblDesconto.Text = $"R$ {produto.ClasseDesconto * produto.ValorUnit * decimal.Parse(txtQuantidade.Text)}";
+            }
         }
     }
 }
